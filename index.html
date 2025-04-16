@@ -140,6 +140,22 @@
       padding-top: 15px;
     }
     
+    .example-button {
+      background-color: #e6f2ec;
+      color: #246c46;
+      border: 1px solid #246c46;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-top: 5px;
+      font-weight: normal;
+    }
+    
+    .example-button:hover {
+      background-color: #d1e7db;
+    }
+    
     @media (max-width: 768px) {
       .results-grid {
         grid-template-columns: 1fr;
@@ -155,7 +171,13 @@
     <div class="input-section">
       <h2>Step 1: Enter Your Cultural Story</h2>
       <p>Enter a brief description of a cultural story, tradition, or knowledge that you share with visitors:</p>
-      <textarea id="storyInput" placeholder="Example: Our tribe has traditionally navigated using star patterns in the night sky. The Matariki star cluster (Pleiades) has special significance as it marks the beginning of our new year and was used by our ancestors to navigate across the ocean..."></textarea>
+      <textarea id="storyInput" placeholder="Example: Our tribe has traditionally navigated using star patterns in the night sky. The Matariki star cluster (Pleiades) has special significance as it marks the beginning of our new year and was used by our ancestors to navigate across the ocean..." oninput="updateCharCount()"></textarea>
+      
+      <div id="charCount" style="font-size: 14px; color: #666; margin-top: 5px;">0 characters (minimum 200 recommended)</div>
+      
+      <button type="button" onclick="loadExampleStory()" class="example-button">
+        Load Example Story
+      </button>
       
       <h3>Cultural Context</h3>
       <select id="culturalContext">
@@ -529,12 +551,38 @@
       return questions[theme] || 'What aspect of our culture connects most deeply to our identity?';
     }
     
+    // Function to load example story
+    function loadExampleStory() {
+      const exampleStory = "For generations, our ancestors navigated vast ocean journeys using the stars as their map. The Matariki star cluster (known as Pleiades in Western astronomy) held special significance for navigation and marking our new year. When Matariki rises in late June/early July, it signals the beginning of our new year and was traditionally a time for remembering those who had passed, celebrating new life, and planning for the harvest season.\n\nOur navigators developed intricate star maps, memorizing the rising and setting positions of key stars throughout the year. They understood how prevailing winds, ocean currents, and migratory patterns of birds and fish all worked together to guide waka (canoes) across thousands of kilometers of open ocean. This knowledge wasn't written down but passed through oral tradition, often through chants and stories that contained navigational information.";
+      
+      document.getElementById('storyInput').value = exampleStory;
+      updateCharCount(); // Update the character counter
+    }
+    
+    // Function to update character count
+    function updateCharCount() {
+      const text = document.getElementById('storyInput').value;
+      const charCountElement = document.getElementById('charCount');
+      const count = text.length;
+      
+      if (count < 200) {
+        charCountElement.innerHTML = `${count} characters <span style="color: #d32f2f;">(minimum 200 recommended)</span>`;
+      } else {
+        charCountElement.innerHTML = `${count} characters <span style="color: #246c46;">(good length!)</span>`;
+      }
+    }
+    
+    // Initialize the counter when the page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      updateCharCount();
+    });
+    
     // Main function to generate all formats
     function generateMultipleFormats() {
       const storyText = document.getElementById('storyInput').value.trim();
       
-      if (storyText.length < 20) {
-        alert("Please enter a more detailed cultural story for better results.");
+      if (storyText.length < 200) {
+        alert("Please enter a detailed cultural story (at least 200 characters) for optimal results. This helps create more meaningful transformations.");
         return;
       }
       
@@ -578,6 +626,3 @@
         document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
       }, 1500);
     }
-  </script>
-</body>
-</html>
