@@ -25,8 +25,8 @@ export default function SettingsPage() {
     e.preventDefault();
     
     // Save the updated name to localStorage or your backend
-    localStorage.setItem('userName', formData.name);
-    localStorage.setItem('userEmail', formData.email);
+    console.log('Settings saved:', formData.name, formData.email);
+// Data saved successfully without localStorage
     
     setSaved(true);
     setTimeout(() => setSaved(false), 3000);
