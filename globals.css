@@ -243,15 +243,3 @@ body {
   border-radius: 9999px;
   margin-left: 0.5rem;
 }
-
-/* Responsive */
-@media (max-width: 768px) {
-  .md\:grid-cols-3 {
-    grid-template-columns: 1fr;
-  }
-  
-  .text-4xl {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-  }
-}
