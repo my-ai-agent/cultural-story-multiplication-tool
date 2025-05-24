@@ -123,20 +123,4 @@ export default function SettingsPage() {
       </div>
     </div>
   );
-  
-  css/* Missing Tailwind classes used by Settings page */
-.min-h-screen { min-height: 100vh; }
-.bg-gray-50 { background-color: #f9fafb; }
-.bg-white { background-color: white; }
-.shadow { box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); }
-.max-w-7xl { max-width: 80rem; }
-.mx-auto { margin-left: auto; margin-right: auto; }
-.px-4 { padding-left: 1rem; padding-right: 1rem; }
-.py-8 { padding-top: 2rem; padding-bottom: 2rem; }
-.text-2xl { font-size: 1.5rem; line-height: 2rem; }
-.font-bold { font-weight: 700; }
-.text-gray-900 { color: #111827; }
-.mb-6 { margin-bottom: 1.5rem; }
-.space-y-6 > * + * { margin-top: 1.5rem; }
-}
-}
+  }
